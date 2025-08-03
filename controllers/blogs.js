@@ -24,7 +24,7 @@ blogsRouter.get('/:id', async (request,response) => {
 
 blogsRouter.put('/:id', async (request,response) => {
   const blogToEdit = await Blog.findById(request.params.id);
-    if (!taskToEdit) {
+    if (!blogToEdit) {
       return response.status(404).end();
     }
   
@@ -32,14 +32,14 @@ blogsRouter.put('/:id', async (request,response) => {
     const body = request.body;
   
     if (user._id.toString() === blogToEdit.user.toString()) {
-      blogToEdit.title = body.text;
+      blogToEdit.title = body.title;
       blogToEdit.body = body.body;
       blogToEdit.author = body.author;
       blogToEdit.id = body.id;
       blogToEdit.user = body.user;
   
-      const updatedTask = await taskToEdit.save();
-      return response.status(200).json(updatedTask);
+      const updatedBlog = await blogToEdit.save();
+      return response.status(200).json(updatedBlog);
     }
   
     return response.status(403).json({ error: "Unauthorized" });
