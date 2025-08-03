@@ -15,13 +15,15 @@ const Navbar = ({user,setUser}) => {
 
     return (
         <nav className="navbar">
-            <h1>The Dojo Blog</h1>
-            {user && (
-            <div className="user-info"  style={{display:"flex", gap:"2px", fontSize:"20px", paddingLeft:"5px"}}>
-                <strong><span style={{color:"#f1356d"}}>Logged in as {user.username}</span></strong>
-                <button className="logout-btn" onClick={handleLogout}  style={{color: "white", backgroundColor: '#f1356d',borderRadius: '8px', border:"none"}}>Logout</button>
+            <div style={{display:"flex",flexDirection:"column"}}>
+                <h1>The Dojo Blog</h1>
+                {user && (
+                <div className="user-info"  style={{display:"flex", gap:"2px", fontSize:"20px", paddingLeft:"5px"}}>
+                    <strong><span style={{color:"#f1356d"}}>Logged in as {user.username}</span></strong>
+                    <button className="logout-btn" onClick={handleLogout}  style={{color: "white", backgroundColor: '#f1356d',borderRadius: '8px', border:"none"}}>Logout</button>
+                </div>
+                )}
             </div>
-            )}
             <div className="links">
                 <Link to="/" style={{
                     color: "white",

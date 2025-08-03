@@ -12,8 +12,6 @@ const loginRouter = require('./controllers/login')
 const app = express()
 app.use(express.json())
 
-app.use(express.static(path.join(__dirname, 'dist')));
-
 logger.info('connecting to', config.MONGODB_URI)
 
 mongoose
@@ -31,6 +29,12 @@ app.use(middleware.requestLogger)
 app.use('/api/blogs', middleware.userExtractor, blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.all('/{*any}', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 
 app.use(middleware.unknownEndpoint)

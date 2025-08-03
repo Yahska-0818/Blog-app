@@ -50,7 +50,7 @@ const BlogDetails = () => {
           onChange={(e) => setEditedText(e.target.value)}
           style={{paddingLeft:"5px"}}
         />
-        <div className="blog-actions">
+        <div className="blog-actions" style={{display:"flex",gap:"10px"}}>
           <button onClick={() => saveEditedBlog(blog._id)}>Save</button>
           <button onClick={() => {setEditedText('')
             setEditing(false)
